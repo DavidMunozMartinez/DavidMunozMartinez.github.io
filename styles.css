@@ -10,7 +10,7 @@ body {
 
 .tabs, .content {
   transition: opacity 180ms ease-in-out; 
-  animation: show .75s ease-in-out 1;
+  animation: show .15s ease-in-out 1;
 }
 
 .content {

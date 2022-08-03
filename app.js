@@ -106,8 +106,9 @@
   };
   const CurrentGreet = Greets[getCurrentGreet()];
   const AboutMe = `
-    Hey
-    There
+    Hi, my name is David Munoz.
+
+    And this website is 100% built with tools built by me.
   `
 
   let Renderer = new Bind({
@@ -137,6 +138,9 @@
           id: 'embeded_projects',
           title: 'Embeded Projects',
           text: '' 
+        },
+        {
+          title: null
         }
       ],
       setActiveContainer: (index) => {

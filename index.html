@@ -14,12 +14,13 @@
       ${this.greet}<span class="caret"></span>
     </span>
 
+    <!-- Tabs -->
     <smart-hover
       class="tabs"
       children-can-change="true"
       move-event="click"
       query-selector=".description-container"
-      transition-time="170"
+      transition-time="140"
       transition-mode="cubic-bezier(.47,.14,.15,1.23)"
       :if="this.contentReady">
       <div
@@ -34,9 +35,11 @@
       </div>
     </smart-hover>
 
-    <!-- User inner text so it respects line breaks in the string -->
-    <div :if="this.active_container > -1 && this.contentReady" class="content">
-      ${this.containers[this.active_container].text}
+    <!-- Content Use inner text so it respects line breaks in the string -->
+    <div 
+      :if="this.active_container > -1 && this.contentReady"
+      class="content">
+      <span :innerText="this.containers[this.active_container].text"></span>
     </div>
 
   </div>
