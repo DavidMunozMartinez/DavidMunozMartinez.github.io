@@ -107,8 +107,6 @@
   const CurrentGreet = Greets[getCurrentGreet()];
   const AboutMe = `
     Hi, my name is David Munoz.
-
-    And this website is 100% built with tools built by me.
   `
 
   let Renderer = new Bind({
@@ -119,8 +117,13 @@
       contentReady: false,
       containers: [
         {
+          id: 'initial_selection',
+          text: '',
+          title: '-'
+        },
+        {
           id: 'about_me',
-          title: 'About Me',
+          title: "Who's this guy?",
           text: AboutMe
         },
         {
@@ -128,19 +131,21 @@
         },
         {
           id: 'projects',
-          title: 'Web Projects',
-          text: ''
+          title: 'Web Development',
+          text: 'Content'
         },
         {
           title: null
         },
         {
           id: 'embeded_projects',
-          title: 'Embeded Projects',
-          text: '' 
+          title: 'Emmbeded Systems',
+          text: 'Content' 
         },
         {
-          title: null
+          id: 'initial_selection',
+          title: '-',
+          text: ''
         }
       ],
       setActiveContainer: (index) => {
@@ -157,7 +162,7 @@
       } else {
         Renderer.bind.greet = Renderer.bind.greet.slice(0, -1); 
       }
-    }, data.time - (20 * i));
+    }, data.time);
   });
 
   // Content ready

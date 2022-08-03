@@ -4,17 +4,36 @@ body {
 }
 
 .main-greet {
+  position: fixed;
+  font-size: 2em;
+  transition: all 250ms cubic-bezier(.47,.14,.15,1.23);
+  top: 30px;
+  left: 30px;
+  width: auto;
+}
+
+.main-greet.animating,
+.main-greet.no-content {
   font-size: 3em;
-  position: relative;
+  top: 50%;
+}
+
+.main-greet.animating {
+  transform: translateY(-50%);
+}
+
+.main-greet.no-content {
+  transform: translateY(10px);
 }
 
 .tabs, .content {
-  transition: opacity 180ms ease-in-out; 
   animation: show .15s ease-in-out 1;
+  transition: all 250ms cubic-bezier(.47,.14,.15,1.23);
 }
 
 .content {
   padding: 20px;
+  margin-top: 130px;
 }
 
 .description-container {
@@ -51,8 +70,16 @@ body {
 }
 
 smart-hover {
-  display: block;
-  margin-top: 20px;
+  /* display: block; */
+  position: absolute;
+  text-align: center;
+  top: 100px;
+}
+
+smart-hover.no-content {
+  top: 50%;
+  width: 100%;
+  transform: translateY(-80px);
 }
 
 .smart-hover-shadow {

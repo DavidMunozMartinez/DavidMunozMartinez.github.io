@@ -1,6 +1,6 @@
 {
   "dependencies": {
-    "bindrjs": "1.0.12",
+    "bindrjs": "^1.0.14",
     "smart-hoverjs": "^1.3.2"
   }
 }

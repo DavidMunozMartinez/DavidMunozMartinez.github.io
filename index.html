@@ -10,7 +10,10 @@
 </head>
 <body>
   <div id="main-content">
-    <span class="main-greet">
+    <span class="main-greet"
+      :class:animating="!this.contentReady"
+      :class:no-content="!this.containers[this.active_container].text && this.contentReady"
+      :class:has-content="this.containers[this.active_container].text && this.contentReady">
       ${this.greet}<span class="caret"></span>
     </span>
 
@@ -22,15 +25,16 @@
       query-selector=".description-container"
       transition-time="140"
       transition-mode="cubic-bezier(.47,.14,.15,1.23)"
-      :if="this.contentReady">
+      :if="this.contentReady"
+      :class:no-content="!this.containers[this.active_container].text && this.contentReady">
       <div
         :foreach="container in this.containers"
         class="description-container"
         :class:active="container.title === this.active_container"
-        :onclick="this.setActiveContainer( this.containers.indexOf( container ) )">
+        :onclick="this.setActiveContainer(this.containers.indexOf(container))">
 
         <span :if="container.title" class="title" :innerHTML="container.title"></span>
-        <span :if="container.title === null" :class:separator="container.title === null"></span>
+        <span :if="!container.title" :class:separator="!container.title"></span>
 
       </div>
     </smart-hover>
