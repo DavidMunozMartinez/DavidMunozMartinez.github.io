@@ -3,9 +3,46 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <link rel="stylesheet" href="styles.css">
+
     <title>David Munoz</title>
 </head>
 <body>
-    Hello world!
+  <div id="main-content">
+    <span class="main-greet">
+      ${this.greet}<span class="caret"></span>
+    </span>
+
+    <smart-hover
+      class="tabs"
+      children-can-change="true"
+      move-event="click"
+      query-selector=".description-container"
+      transition-time="170"
+      transition-mode="cubic-bezier(.47,.14,.15,1.23)"
+      :if="this.contentReady">
+      <div
+        :foreach="container in this.containers"
+        class="description-container"
+        :class:active="container.title === this.active_container"
+        :onclick="this.setActiveContainer( this.containers.indexOf( container ) )">
+
+        <span :if="container.title" class="title" :innerHTML="container.title"></span>
+        <span :if="container.title === null" :class:separator="container.title === null"></span>
+
+      </div>
+    </smart-hover>
+
+    <!-- User inner text so it respects line breaks in the string -->
+    <div :if="this.active_container > -1 && this.contentReady" class="content">
+      ${this.containers[this.active_container].text}
+    </div>
+
+  </div>
 </body>
+
+<script src="node_modules/bindrjs/dist/index.js"></script>
+<script src="node_modules/smart-hoverjs/dist/index.js"></script>
+<script src="app.js"></script>
 </html>
