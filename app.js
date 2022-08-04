@@ -2,16 +2,6 @@
   // These are literally recordings of my keystrokes being replayed on the site
   const Greets = {
     morning: [
-      { key: "H", time: 0 },
-      { key: "e", time: 180 },
-      { key: "y", time: 258 },
-      { key: " ", time: 382 },
-      { key: "t", time: 551 },
-      { key: "h", time: 618 },
-      { key: "e", time: 720 },
-      { key: "r", time: 854 },
-      { key: "e", time: 922 },
-      { key: ",", time: 1011 },
       { key: " ", time: 1113 },
       { key: "g", time: 1293 },
       { key: "o", time: 1529 },
@@ -24,7 +14,6 @@
       { key: null, time: 3228 },
       { key: null, time: 3352 },
       { key: null, time: 3622 },
-      { key: null, time: 3993 },
       { key: " ", time: 4376 },
       { key: "m", time: 4690 },
       { key: "o", time: 4792 },
@@ -36,16 +25,6 @@
       { key: "!", time: 5455 },
     ],
     afternoon: [
-      { key: "H", time: 0 },
-      { key: "e", time: 147 },
-      { key: "y", time: 225 },
-      { key: " ", time: 372 },
-      { key: "t", time: 495 },
-      { key: "h", time: 597 },
-      { key: "e", time: 720 },
-      { key: "r", time: 844 },
-      { key: "e", time: 912 },
-      { key: ",", time: 1035 },
       { key: " ", time: 1158 },
       { key: "g", time: 1283 },
       { key: "o", time: 1361 },
@@ -70,16 +49,6 @@
       { key: "!", time: 4961 },
     ],
     evening: [
-      { key: "H", time: 0 },
-      { key: "e", time: 123 },
-      { key: "y", time: 214 },
-      { key: " ", time: 337 },
-      { key: "t", time: 484 },
-      { key: "h", time: 618 },
-      { key: "e", time: 720 },
-      { key: "r", time: 855 },
-      { key: "e", time: 923 },
-      { key: ",", time: 1080 },
       { key: " ", time: 1215 },
       { key: "g", time: 1417 },
       { key: "o", time: 1541 },
@@ -117,13 +86,12 @@
       contentReady: false,
       containers: [
         {
-          id: 'initial_selection',
-          text: '',
-          title: '-'
+          text: null,
+          title: '<'
         },
         {
           id: 'about_me',
-          title: "Who's this guy?",
+          title: "Who am I?",
           text: AboutMe
         },
         {
@@ -131,7 +99,7 @@
         },
         {
           id: 'projects',
-          title: 'Web Development',
+          title: 'My projects',
           text: 'Content'
         },
         {
@@ -139,17 +107,15 @@
         },
         {
           id: 'embeded_projects',
-          title: 'Emmbeded Systems',
+          title: 'Personal Favorites',
           text: 'Content' 
-        },
-        {
-          id: 'initial_selection',
-          title: '-',
-          text: ''
         }
       ],
-      setActiveContainer: (index) => {
-        Renderer.bind.active_container = index;
+      setActiveIndex: (index) => {
+        let container = Renderer.bind.containers[index];
+        if (container.title) {
+          Renderer.bind.active_container = index;
+        }
       }
     },
   });

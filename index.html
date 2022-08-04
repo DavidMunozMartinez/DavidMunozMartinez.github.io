@@ -6,15 +6,31 @@
 
     <link rel="stylesheet" href="styles.css">
 
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bitter&display=swap" rel="stylesheet">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro&display=swap" rel="stylesheet">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Ibarra+Real+Nova&display=swap" rel="stylesheet">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cookie&display=swap" rel="stylesheet">
+
     <title>David Munoz</title>
 </head>
 <body>
   <div id="main-content">
     <span class="main-greet"
       :class:animating="!this.contentReady"
-      :class:no-content="!this.containers[this.active_container].text && this.contentReady"
-      :class:has-content="this.containers[this.active_container].text && this.contentReady">
-      ${this.greet}<span class="caret"></span>
+      :class:no-content="!this.containers[this.active_container].id && this.contentReady"
+      :class:has-content="this.containers[this.active_container].id && this.contentReady">
+      <span style="font-family: 'Cookie', cursive; font-size: 2em;">Hey there,</span><span style="position: relative;">${this.greet} <span class="caret"></span> </span>
     </span>
 
     <!-- Tabs -->
@@ -22,16 +38,17 @@
       class="tabs"
       children-can-change="true"
       move-event="click"
-      query-selector=".description-container"
+      query-selector=".description-container.interactable"
       transition-time="140"
       transition-mode="cubic-bezier(.47,.14,.15,1.23)"
       :if="this.contentReady"
-      :class:no-content="!this.containers[this.active_container].text && this.contentReady">
+      :class:no-content="!this.containers[this.active_container].id && this.contentReady">
       <div
         :foreach="container in this.containers"
         class="description-container"
-        :class:active="container.title === this.active_container"
-        :onclick="this.setActiveContainer(this.containers.indexOf(container))">
+        :class:interactable="container.title"
+        :class:empty="!container.text"
+        :onclick="this.setActiveIndex(this.containers.indexOf(container))">
 
         <span :if="container.title" class="title" :innerHTML="container.title"></span>
         <span :if="!container.title" :class:separator="!container.title"></span>
@@ -41,7 +58,7 @@
 
     <!-- Content Use inner text so it respects line breaks in the string -->
     <div 
-      :if="this.active_container > -1 && this.contentReady"
+      :if="this.containers[this.active_container].id && this.contentReady"
       class="content">
       <span :innerText="this.containers[this.active_container].text"></span>
     </div>
@@ -49,9 +66,7 @@
   </div>
 </body>
 
-<!-- <script src="node_modules/bindrjs/dist/index.js"></script> -->
 <script src="https://unpkg.com/smart-hoverjs@1.3.2/dist/index.js" defer></script>
 <script src="https://unpkg.com/bindrjs@1.0.14/dist/index.js" defer></script>
-<!-- <script src="node_modules/smart-hoverjs/dist/index.js"></script> -->
 <script src="app.js" defer></script>
 </html>
