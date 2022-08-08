@@ -1,7 +1,13 @@
+:root {
+  --background-dark: rgb(30, 30, 0);
+  --color-dark: rgb()
+}
+
 body {
-  background-color: rgb(255, 248, 231);
-  color: rgb(30, 20, 0);
+  background-color: rgb(220, 220, 220);
+  color: rgb(60, 60, 60);
   font-family: 'Inconsolata', monospace;
+  position: relative;
   /* font-family: 'Bitter', serif; */
   /* font-family: 'Source Code Pro', monospace; */
   /* font-family: 'Ibarra Real Nova', serif; */
@@ -14,6 +20,21 @@ body {
   top: 30px;
   left: 50px;
   width: auto;
+}
+
+.bottom-leaves {
+  position: fixed;
+  bottom: 100px;
+  height: 200px;
+  width: 200px;
+  left: -15px;
+}
+
+.bottom-leaves > svg {
+  transform: rotate(69deg);
+  color: #a7c6a7;
+  animation: leaf-shake 1s ease-in-out 1;
+  /* animation-delay: 1ms; */
 }
 
 .main-greet.animating,
@@ -50,9 +71,12 @@ body {
 
 .description-container > .title {
   pointer-events: none;
+  user-select: none;
+  transition: all 120ms ease-in-out;
 }
-.title:hover {
-  transform: scale(1.1);
+.description-container:hover > .title {
+  text-shadow: 2px 2px 5px #d2d2d2;
+  transform: scale(1.01);
 }
 
 .description-container > .separator {
@@ -106,13 +130,26 @@ smart-hover.no-content {
   }
 }
 
-@keyframes text-emerge {
-  0% {
-    opacity: 0;
+/* @keyframes leaf-shake {
+  0% { transform: rotate(69deg); }
+  10% { transform: rotate(76deg) }
+  40% { transform: rotate(65deg) }
+  100% { transform: rotate(69deg) }
+} */
+
+/* Copy this @keyframes block to your CSS*/
+@keyframes leaf-shake {
+  0.0%{
+  transform: rotate(69deg);
   }
-  100% {
-    opacity: 1;
-    /* text-shadow: 1px 1px 5px rgb(140, 140, 140);
-    font-size: 1.03em; */
+  100%{
+  transform: rotate(69deg);
   }
-}
+  15%{
+  transform: rotate(74deg);
+  }
+  50%{
+  transform: rotate(66deg);
+  }
+  }
+  

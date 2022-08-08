@@ -1,4 +1,14 @@
 (() => {
+  CustomBindHandler('re-animate', (handler, context) => {
+    console.log('animate');
+    let container = context.containers[context.active_container];
+    if (!container.text) {
+      handler.element.style.animation = 'none';
+      // Force animation again
+      setTimeout(() => {handler.element.style.animation = ''}, 120);
+    }
+  });
+
   // These are literally recordings of my keystrokes being replayed on the site
   const Greets = {
     morning: [
@@ -83,6 +93,7 @@
     bind: {
       greet: "",
       active_container: 0,
+      reAnimate: 0,
       contentReady: false,
       containers: [
         {
@@ -111,6 +122,9 @@
           text: 'Content' 
         }
       ],
+      animationTriggers: {
+        bottom_leaf: false
+      },
       setActiveIndex: (index) => {
         let container = Renderer.bind.containers[index];
         if (container.title) {
@@ -120,7 +134,6 @@
     },
   });
 
-  
   CurrentGreet.forEach((data, i) => {
     setTimeout(() => {
       if (data.key) {
@@ -134,6 +147,7 @@
   // Content ready
   setTimeout(() => {
     Renderer.bind.contentReady = true;
+    Renderer.bind.animationTriggers.bottom_leaf = !Renderer.bind.animationTriggers.bottom_leaf;
   }, CurrentGreet[CurrentGreet.length -1].time);
 
   function getCurrentGreet() {
